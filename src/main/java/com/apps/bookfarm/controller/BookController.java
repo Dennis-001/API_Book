@@ -2,6 +2,7 @@ package com.apps.bookfarm.controller;
 
 import com.apps.bookfarm.repository.BookRepository;
 import com.apps.bookfarm.model.Book;
+import com.apps.bookfarm.serviceimpl.BookServiceImpl;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,9 +17,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 public class BookController {
     private final BookRepository bookRepository;
+    private final BookServiceImpl bookService;
 
-    public BookController(BookRepository bookRepository) {
+    public BookController(BookRepository bookRepository, BookServiceImpl bookService) {
         this.bookRepository = bookRepository;
+        this.bookService = bookService;
     }
 
     @GetMapping("/books/{id}")
